@@ -1,0 +1,41 @@
+.button_group {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  margin-top: 50px;
+
+  .button_style {
+    display: inline-block;
+    padding: 15px 30px;
+    min-width: 180px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    border: 2px solid #0ff;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #0ff, #09f, #0ff);
+    background-size: 200%;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+    transition: 0.5s;
+
+    &:hover {
+      background-position: 100%;
+      box-shadow: 0 0 20px #0ff, 0 0 50px #0ff, 0 0 100px #0ff;
+      color: #151515;
+    }
+  }
+
+  p {
+    font-size: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #e627e6, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(221, 52, 221, 0.8), 0 0 15px rgba(240, 236, 20, 0.8);
+  }
+}

@@ -1,23 +1,34 @@
 import './App.css'
-import io from "socket.io-client";
+import socket from "./server/socket";
 import { useEffect, useState } from "react";
+import ChatRoom from "./Components/user-chat-room";
+import Room from "./Components/user-room";
+import UserName from "./Components/user-name-input";
+import { RoomProvider } from "./untils/RoomContext";
 
-const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [room, setRoom] = useState("");
 
   const [message, setMessage] = useState("");
   const [messageReceive, setMessageReceive] = useState("");
+  const [show, setShow] = useState(true);
+  const [userNameShow, setUserNameShow] = useState(true);
+  const [userName, setUserName] = useState('');
 
-  const sendMessage = () => {
-    socket.emit("send_message", { message, room })
+
+  const setShowHandler = (value) => {
+    setShow(value)
   }
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room)
-    }
+
+  const setShowUserName = (value) => {
+    setUserNameShow(value)
   }
+
+  const setUserNameHandler = (value) => {
+    setUserName(value)
+  }
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageReceive(data.message)
@@ -26,12 +37,11 @@ function App() {
   return (
     <>
       <div>
-        <input type="text" placeholder='Room Number...' onChange={(e) => { setRoom(e.target.value) }} />
-        <button onClick={joinRoom}>join Room</button><br /><br />
-        <input type="text" placeholder='Message...' onChange={(e) => { setMessage(e.target.value) }} />
-        <button onClick={sendMessage}>Send Message</button>
-        <h1>Message:</h1>
-        {messageReceive}
+        <RoomProvider>
+          {userNameShow && <UserName showUserName={setShowUserName} setUserNameHandler={setUserNameHandler} />}
+          {show && !userNameShow && <Room showWhat={setShowHandler} userName={userName} />}
+          {!show && <ChatRoom userName={userName} />}
+        </RoomProvider>
       </div>
     </>
   )

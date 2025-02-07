@@ -1,0 +1,49 @@
+h1 {
+  color: #FFD700;
+  text-shadow: 3px 3px 30px rgb(54, 245, 140);
+  margin: 0;
+  text-align-last: left;
+}
+
+.text_area {
+  width: 800px;
+  height: 80vh;
+  margin: 0 auto;
+  padding: 15px 0;
+  overflow: auto;
+  scrollbar-width: none;
+
+  .text_style {
+    font-size: 20px;
+    font-family: "Roboto Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00ffff;
+  }
+
+  .receive_text {
+    display: flex;
+    align-items: start;
+    text-align: left;
+    padding: 12px;
+    margin-right: 50px;
+
+    span:nth-child(1) {
+      white-space: nowrap;
+    }
+
+    span:nth-child(2) {
+      word-break: break-all;
+    }
+  }
+
+  .post_text {
+    color: #00ff00;
+    display: block;
+    text-align: right;
+    padding: 12px;
+    margin-left: 50px;
+    word-break: break-all;
+  }
+
+}
